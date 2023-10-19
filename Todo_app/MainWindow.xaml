@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid x:Name="dgTodoList" FontSize="16" FontWeight="Bold" Margin="10" Loaded="dgTodoList_Loaded">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Header="CreationDate" Width="180"/>
+                <DataGridTextColumn Binding="{Binding Path = CreationDate}" IsReadOnly="True" Header="CreationDate" Width="180"/>
                 <DataGridCheckBoxColumn IsReadOnly="True" Header="Done" Width="80"/>
                 <DataGridTextColumn IsReadOnly="False" Header="Todo" Width="*"/>
             </DataGrid.Columns>
