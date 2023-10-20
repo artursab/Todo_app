@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,12 +42,17 @@ namespace TodoApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _fileIOService = new FileIOService(PATH);
-            _todoData = new BindingList<TodoModels>()
+
+            try
             {
-                new TodoModels() {Text="Test"},
-                new TodoModels() {Text="Test1"},
-                new TodoModels() {Text="Test 2", IsDone = true}
-            };
+                _todoData = _fileIOService.LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Close();
+            }
+            
 
             dgTodoList.ItemsSource = _todoData;
             _todoData.ListChanged += _todoData_ListChanged;
@@ -57,7 +63,15 @@ namespace TodoApp
 
             if (e.ListChangedType == ListChangedType.ItemChanged || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemAdded)
             {
-
+                try
+                {
+                    _fileIOService.SaveData(sender);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Close();
+                }
             }
 
            
