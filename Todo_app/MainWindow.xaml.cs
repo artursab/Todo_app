@@ -31,7 +31,7 @@ namespace TodoApp
 
         private void dgTodoList_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -49,27 +49,13 @@ namespace TodoApp
 
         private void _todoData_ListChanged(object sender, ListChangedEventArgs e)
         {
-            switch (e.ListChangedType)
+
+            if (e.ListChangedType == ListChangedType.ItemChanged || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemAdded)
             {
-                case ListChangedType.Reset:
-                    break;
-                case ListChangedType.ItemAdded:
-                    break;
-                case ListChangedType.ItemDeleted:
-                    break;
-                case ListChangedType.ItemMoved:
-                    break;
-                case ListChangedType.ItemChanged:
-                    break;
-                case ListChangedType.PropertyDescriptorAdded:
-                    break;
-                case ListChangedType.PropertyDescriptorDeleted:
-                    break;
-                case ListChangedType.PropertyDescriptorChanged:
-                    break;
-                default:
-                    break;
+
             }
+
+           
         }
     }
 }
