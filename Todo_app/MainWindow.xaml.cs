@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Todo_app.Models;
+using Todo_app.Services;
 
 namespace TodoApp
 {
@@ -22,7 +23,10 @@ namespace TodoApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly string PATH = $"{Environment.CurrentDirectory}\\todoDataList.json";
         private BindingList<TodoModels> _todoData;
+        private FileIOService _fileIOService;
+
 
         public MainWindow()
         {
@@ -36,6 +40,7 @@ namespace TodoApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            _fileIOService = new FileIOService(PATH);
             _todoData = new BindingList<TodoModels>()
             {
                 new TodoModels() {Text="Test"},
